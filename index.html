@@ -1,928 +1,206 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>just LEAN it | Julian Wenger</title>
-  <meta
-    name="description"
-    content="just LEAN it – LEAN Construction für Infrastrukturprojekte. Julian Wenger unterstützt Bau- und Infrastrukturprojekte mit Fokus auf Struktur, Effizienz und umsetzbare Prozessverbesserung."
-  />
-  <style>
-    :root {
-      --bg: #0d1310;
-      --bg-soft: #121a16;
-      --panel: rgba(20, 28, 24, 0.72);
-      --panel-solid: #161f1a;
-      --panel-light: #1d2822;
-      --text: #edf2ec;
-      --muted: #b9c4bb;
-      --line: rgba(196, 214, 196, 0.14);
-      --olive: #7f8f62;
-      --olive-strong: #94a86d;
-      --olive-dark: #5f6d48;
-      --white-soft: rgba(255,255,255,0.08);
-      --shadow: 0 24px 70px rgba(0,0,0,0.35);
-      --radius-xl: 28px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --max-width: 1200px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>just LEAN it | Julian Wenger</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+/* NAV */
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15,23,42,0.8);
+}
+
+nav img {
+  height: 40px;
+}
+
+nav a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+/* HERO */
+
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+}
+
+.container {
+  display: flex;
+  gap: 50px;
+  max-width: 1100px;
+  width: 100%;
+  align-items: center;
+}
+
+.text {
+  flex: 1;
+}
+
+.text h1 {
+  font-size: 3.5rem;
+  color: #a3b18a;
+}
+
+.text p {
+  margin-top: 20px;
+  color: #cbd5f5;
+}
+
+.btn {
+  margin-top: 25px;
+  display: inline-block;
+  padding: 12px 25px;
+  background: #6b8e23;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+}
+
+/* IMAGE */
+
+.image {
+  flex: 1;
+  text-align: center;
+}
+
+.image img {
+  width: 280px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* SECTIONS */
+
+section {
+  padding: 80px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+h2 {
+  color: #a3b18a;
+}
+
+/* GRID */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* MOBILE */
+
+@media(max-width: 800px){
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(127, 143, 98, 0.18), transparent 28%),
-        radial-gradient(circle at 85% 15%, rgba(148, 168, 109, 0.10), transparent 20%),
-        linear-gradient(180deg, #0b110e 0%, #101713 100%);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(var(--max-width), calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .blur-orb {
-      position: fixed;
-      border-radius: 999px;
-      filter: blur(90px);
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.45;
-    }
-
-    .orb-1 {
-      width: 280px;
-      height: 280px;
-      background: rgba(127, 143, 98, 0.24);
-      top: 60px;
-      left: -80px;
-    }
-
-    .orb-2 {
-      width: 240px;
-      height: 240px;
-      background: rgba(148, 168, 109, 0.16);
-      top: 420px;
-      right: -80px;
-    }
-
-    .site-shell {
-      position: relative;
-      z-index: 1;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(14px);
-      background: rgba(9, 13, 10, 0.55);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .topbar-inner {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .brand img {
-      height: 40px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-
-    .brand-title {
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
-    .brand-sub {
-      color: var(--muted);
-      font-size: 0.86rem;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      flex-wrap: wrap;
-    }
-
-    .nav a {
-      color: var(--muted);
-      font-size: 0.96rem;
-      transition: 0.25s ease;
-    }
-
-    .nav a:hover {
-      color: var(--text);
-    }
-
-    .nav-cta {
-      padding: 11px 18px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--olive-strong), var(--olive-dark));
-      color: #fff !important;
-      box-shadow: 0 8px 24px rgba(127, 143, 98, 0.28);
-    }
-
-    .hero {
-      padding: 54px 0 70px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 28px;
-      align-items: stretch;
-    }
-
-    .hero-card,
-    .hero-side {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius-xl);
-      backdrop-filter: blur(16px);
-    }
-
-    .hero-card {
-      padding: 42px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(135deg, rgba(148, 168, 109, 0.08), transparent 30%),
-        linear-gradient(315deg, rgba(255,255,255,0.03), transparent 35%);
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(127, 143, 98, 0.10);
-      color: #d7e0d0;
-      border: 1px solid rgba(127, 143, 98, 0.24);
-      font-size: 0.87rem;
-      letter-spacing: 0.03em;
-      margin-bottom: 22px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.8rem, 5vw, 5rem);
-      line-height: 0.96;
-      letter-spacing: -0.04em;
-      margin-bottom: 20px;
-      max-width: 10ch;
-    }
-
-    .hero h1 span {
-      color: var(--olive-strong);
-    }
-
-    .lead {
-      font-size: 1.08rem;
-      color: var(--muted);
-      max-width: 62ch;
-      margin-bottom: 28px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 34px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 48px;
-      padding: 0 22px;
-      border-radius: 999px;
-      font-weight: 600;
-      transition: 0.25s ease;
-      border: 1px solid transparent;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--olive-strong), var(--olive-dark));
-      color: white;
-      box-shadow: 0 14px 36px rgba(127, 143, 98, 0.24);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 40px rgba(127, 143, 98, 0.34);
-    }
-
-    .btn-secondary {
-      border-color: rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,0.06);
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .stat {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 18px;
-      padding: 18px;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.15rem;
-      margin-bottom: 4px;
-      color: var(--text);
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .hero-side {
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .portrait-wrap {
-      position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(127, 143, 98, 0.14), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.08);
-      min-height: 420px;
-    }
-
-    .portrait-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .portrait-badge {
-      position: absolute;
-      left: 18px;
-      bottom: 18px;
-      right: 18px;
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(8, 12, 9, 0.68);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .portrait-badge strong {
-      display: block;
-      font-size: 1.02rem;
-      margin-bottom: 2px;
-    }
-
-    .portrait-badge span {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .hero-mini-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 20px;
-      padding: 18px;
-    }
-
-    .hero-mini-card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .hero-mini-card strong {
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    section {
-      padding: 38px 0 24px;
-    }
-
-    .section-header {
-      margin-bottom: 24px;
-    }
-
-    .section-label {
-      color: var(--olive-strong);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.8rem;
-      margin-bottom: 10px;
-      display: inline-block;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 3vw, 3rem);
-      line-height: 1.05;
-      margin-bottom: 10px;
-      letter-spacing: -0.03em;
-    }
-
-    .section-copy {
-      color: var(--muted);
-      max-width: 72ch;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 22px;
-    }
-
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
-      padding: 28px;
-      backdrop-filter: blur(14px);
-    }
-
-    .panel p + p {
-      margin-top: 14px;
-    }
-
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .tag {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(127, 143, 98, 0.10);
-      color: #dbe4d6;
-      border: 1px solid rgba(127, 143, 98, 0.20);
-      font-size: 0.92rem;
-    }
-
-    .services-grid,
-    .references-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .service-card,
-    .reference-card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: 26px;
-      box-shadow: var(--shadow);
-      transition: 0.25s ease;
-      backdrop-filter: blur(14px);
-    }
-
-    .service-card:hover,
-    .reference-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(148, 168, 109, 0.32);
-    }
-
-    .card-number {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(127, 143, 98, 0.12);
-      color: var(--olive-strong);
-      margin-bottom: 16px;
-      font-weight: 700;
-    }
-
-    .service-card h3,
-    .reference-card h3,
-    .contact-card h3 {
-      margin-bottom: 10px;
-      font-size: 1.18rem;
-      letter-spacing: -0.01em;
-    }
-
-    .service-card p,
-    .reference-card p,
-    .contact-card p,
-    .panel p,
-    .contact-list a,
-    .contact-list div {
-      color: var(--muted);
-    }
-
-    .references-grid .reference-card {
-      min-height: 190px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 22px;
-    }
-
-    .contact-card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
-    }
-
-    .contact-list {
-      display: grid;
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .contact-line {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .contact-line strong {
-      font-size: 0.92rem;
-      color: var(--text);
-    }
-
-    .contact-note {
-      padding: 18px;
-      margin-top: 18px;
-      border-radius: 18px;
-      background: rgba(127, 143, 98, 0.08);
-      border: 1px solid rgba(127, 143, 98, 0.16);
-      color: #dce5d7;
-      font-size: 0.95rem;
-    }
-
-    .footer {
-      padding: 34px 0 50px;
-      color: #97a498;
-      font-size: 0.92rem;
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 22px;
-    }
-
-    @media (max-width: 1080px) {
-      .hero-grid,
-      .about-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-side {
-        order: -1;
-      }
-
-      .portrait-wrap {
-        min-height: 520px;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .container {
-        width: min(var(--max-width), calc(100% - 24px));
-      }
-
-      .topbar-inner {
-        min-height: 72px;
-      }
-
-      .brand-sub {
-        display: none;
-      }
-
-      .nav {
-        gap: 14px;
-      }
-
-      .nav a {
-        font-size: 0.9rem;
-      }
-
-      .hero-card,
-      .hero-side,
-      .panel,
-      .service-card,
-      .reference-card,
-      .contact-card {
-        padding: 22px;
-      }
-
-      .hero {
-        padding-top: 28px;
-      }
-
-      .hero-stats,
-      .services-grid,
-      .references-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .portrait-wrap {
-        min-height: 420px;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .topbar-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        padding: 14px 0;
-      }
-
-      .nav {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .hero h1 {
-        max-width: none;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-    }
-  </style>
 </head>
+
 <body>
-  <div class="blur-orb orb-1"></div>
-  <div class="blur-orb orb-2"></div>
 
-  <div class="site-shell">
-    <header class="topbar">
-      <div class="container topbar-inner">
-        <a href="#home" class="brand">
-          <img src="logo.png" alt="just LEAN it Logo">
-          <div class="brand-text">
-            <span class="brand-title">just LEAN it</span>
-            <span class="brand-sub">LEAN Construction für Infrastrukturprojekte</span>
-          </div>
-        </a>
-
-        <nav class="nav">
-          <a href="#about">Über mich</a>
-          <a href="#services">Leistungen</a>
-          <a href="#references">Referenzen</a>
-          <a href="#contact" class="nav-cta">Kontakt</a>
-        </nav>
-      </div>
-    </header>
-
-    <main id="home">
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-card">
-            <div class="eyebrow">LEAN Construction · Infrastruktur · Prozessoptimierung</div>
-            <h1>just <span>LEAN</span> it</h1>
-            <p class="lead">
-              Ich bin Julian Wenger und positioniere mich im Bereich
-              <strong>LEAN Construction für Infrastrukturprojekte</strong>.
-              Mein Fokus liegt auf klaren Abläufen, wirksamer Zusammenarbeit
-              und umsetzbaren Verbesserungen dort, wo Bauprojekte komplex werden.
-            </p>
-
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact">Kontakt aufnehmen</a>
-              <a class="btn btn-secondary" href="#services">Leistungen ansehen</a>
-            </div>
-
-            <div class="hero-stats">
-              <div class="stat">
-                <strong>Fokus</strong>
-                <span>LEAN Construction im Infrastrukturbereich</span>
-              </div>
-              <div class="stat">
-                <strong>Ansatz</strong>
-                <span>Praxisnah, strukturiert, umsetzungsorientiert</span>
-              </div>
-              <div class="stat">
-                <strong>Marke</strong>
-                <span>Moderner Auftritt mit klarer Positionierung</span>
-              </div>
-            </div>
-          </div>
-
-          <aside class="hero-side">
-            <div class="portrait-wrap">
-              <img src="julian.png" alt="Julian Wenger">
-              <div class="portrait-badge">
-                <strong>Julian Wenger</strong>
-                <span>Bauingenieur · LEAN Construction · Change Management</span>
-              </div>
-            </div>
-
-            <div class="hero-mini-card">
-              <strong>Positionierung im Aufbau</strong>
-              <p>
-                Die Website schafft bereits jetzt eine klare Basis für deine spätere
-                Selbstständigkeit und zeigt auf einen Blick, wofür „just LEAN it“ steht.
-              </p>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section id="about">
-        <div class="container">
-          <div class="section-header">
-            <span class="section-label">Über mich</span>
-            <h2 class="section-title">Technisches Verständnis trifft auf LEAN-Denken.</h2>
-            <p class="section-copy">
-              Ich verbinde Erfahrung aus dem Bau- und Infrastrukturumfeld mit einem klaren
-              Blick auf Prozesse, Zusammenarbeit und nachhaltige Verbesserung.
-            </p>
-          </div>
-
-          <div class="about-grid">
-            <div class="panel">
-              <p>
-                Ich bin <strong>Julian Wenger</strong>, Bauingenieur mit einer klaren
-                Spezialisierung auf <strong>LEAN Construction im Infrastrukturbereich</strong>.
-                Mich interessiert nicht nur, wie Projekte geplant werden, sondern vor allem,
-                wie sie im Alltag tatsächlich funktionieren.
-              </p>
-              <p>
-                Genau dort setzt mein Ansatz an: Abläufe sichtbar machen, Reibungsverluste
-                reduzieren, Verantwortung klarer verankern und Teams dabei unterstützen,
-                Projekte strukturierter und effizienter umzusetzen.
-              </p>
-              <p>
-                Mit <strong>just LEAN it</strong> bereite ich meinen künftigen Beratungsauftritt
-                vor — modern, fokussiert und klar auf Infrastrukturprojekte ausgerichtet.
-              </p>
-            </div>
-
-            <div class="panel">
-              <h3 style="margin-bottom: 10px;">Schwerpunkte</h3>
-              <p>Mein fachlicher Fokus liegt auf Themen, die direkt im Projekt Wirkung entfalten:</p>
-              <div class="tag-list">
-                <span class="tag">LEAN Construction</span>
-                <span class="tag">Infrastrukturprojekte</span>
-                <span class="tag">Prozessoptimierung</span>
-                <span class="tag">Baulogistik & Abläufe</span>
-                <span class="tag">Change Management</span>
-                <span class="tag">Projektorganisation</span>
-                <span class="tag">Zusammenarbeit</span>
-                <span class="tag">Struktur & Umsetzung</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="services">
-        <div class="container">
-          <div class="section-header">
-            <span class="section-label">Leistungen</span>
-            <h2 class="section-title">Wobei ich unterstützen kann</h2>
-            <p class="section-copy">
-              Die Inhalte können später noch weiter geschärft werden — für den Start zeigt die Seite
-              bereits eine professionelle und glaubwürdige Leistungsstruktur.
-            </p>
-          </div>
-
-          <div class="services-grid">
-            <article class="service-card">
-              <div class="card-number">01</div>
-              <h3>LEAN Construction</h3>
-              <p>
-                Unterstützung bei der Einführung und Weiterentwicklung von LEAN-Prinzipien
-                im Bau- und Infrastrukturumfeld — mit Fokus auf praktikable Umsetzung statt Theorie.
-              </p>
-            </article>
-
-            <article class="service-card">
-              <div class="card-number">02</div>
-              <h3>Prozessoptimierung</h3>
-              <p>
-                Analyse bestehender Abläufe, Erkennen von Engpässen und Entwicklung robuster
-                Prozessstrukturen für mehr Klarheit, Stabilität und Leistung im Projekt.
-              </p>
-            </article>
-
-            <article class="service-card">
-              <div class="card-number">03</div>
-              <h3>Change Management</h3>
-              <p>
-                Begleitung von Veränderung im Projektkontext — mit Blick auf Akzeptanz,
-                Kommunikation, Verantwortlichkeiten und nachhaltige Verankerung.
-              </p>
-            </article>
-
-            <article class="service-card">
-              <div class="card-number">04</div>
-              <h3>Projektnahe Umsetzung</h3>
-              <p>
-                Lösungen mit Praxisbezug für reale Projektbedingungen im Infrastruktur- und
-                Baustellenumfeld — strukturiert, realistisch und nah an der Ausführung.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="references">
-        <div class="container">
-          <div class="section-header">
-            <span class="section-label">Referenzen</span>
-            <h2 class="section-title">Einsatzfelder und fachlicher Kontext</h2>
-            <p class="section-copy">
-              Solange du noch keinen finalen Referenzbereich mit Kundenlogos oder Cases zeigen möchtest,
-              wirkt diese Darstellung professionell und glaubwürdig.
-            </p>
-          </div>
-
-          <div class="references-grid">
-            <article class="reference-card">
-              <h3>Infrastruktur & Großprojekte</h3>
-              <p>
-                Positionierung mit Fokus auf technisch anspruchsvolle Projektumfelder,
-                in denen Struktur, Taktung, Kommunikation und Transparenz entscheidend sind.
-              </p>
-            </article>
-
-            <article class="reference-card">
-              <h3>LEAN im Baustellenkontext</h3>
-              <p>
-                Schwerpunkt auf der Frage, wie LEAN nicht nur diskutiert, sondern im Projektalltag
-                tatsächlich gelebt und wirksam gemacht werden kann.
-              </p>
-            </article>
-
-            <article class="reference-card">
-              <h3>Praxisnahe Verbesserung</h3>
-              <p>
-                Keine Standardlösungen von der Stange, sondern Ansätze, die zur Realität
-                von Infrastrukturprojekten und operativer Umsetzung passen.
-              </p>
-            </article>
-
-            <article class="reference-card">
-              <h3>Marke im Aufbau</h3>
-              <p>
-                „just LEAN it“ schafft bereits heute einen klaren Markenrahmen für deine spätere
-                Selbstständigkeit und deinen professionellen Außenauftritt.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact">
-        <div class="container">
-          <div class="section-header">
-            <span class="section-label">Kontakt</span>
-            <h2 class="section-title">Lass uns ins Gespräch kommen</h2>
-            <p class="section-copy">
-              Ob erster Austausch, Sparring oder eine zukünftige Zusammenarbeit:
-              eine klare Kontaktmöglichkeit macht die Seite deutlich professioneller.
-            </p>
-          </div>
-
-          <div class="contact-grid">
-            <div class="contact-card">
-              <h3>Direkter Kontakt</h3>
-              <div class="contact-list">
-                <div class="contact-line">
-                  <strong>Name</strong>
-                  <div>Julian Wenger</div>
-                </div>
-                <a class="contact-line" href="mailto:julianwenger1991@gmail.com">
-                  <strong>E-Mail</strong>
-                  <div>julianwenger1991@gmail.com</div>
-                </a>
-                <a class="contact-line" href="tel:+436766603317">
-                  <strong>Telefon</strong>
-                  <div>+43 676 6603317</div>
-                </a>
-                <div class="contact-line">
-                  <strong>Marke</strong>
-                  <div>just LEAN it</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="contact-card">
-              <h3>Zusammenarbeit</h3>
-              <p>
-                Der Schwerpunkt von <strong>just LEAN it</strong> liegt auf LEAN Construction
-                für Infrastrukturprojekte. Wenn du dich zu Prozessverbesserung, Projektstruktur,
-                Zusammenarbeit oder zukünftiger Beratung austauschen möchtest, freue ich mich über deine Nachricht.
-              </p>
-
-              <div class="contact-note">
-                Tipp für den nächsten Ausbauschritt: Als Nächstes könntest du hier noch dein
-                LinkedIn-Profil ergänzen oder ein kleines Kontaktformular einbauen.
-              </div>
-
-              <div style="margin-top: 22px;">
-                <a class="btn btn-primary" href="mailto:julianwenger1991@gmail.com">E-Mail senden</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-inner">
-        <div>© 2026 just LEAN it · Julian Wenger</div>
-        <div>LEAN Construction für Infrastrukturprojekte</div>
-      </div>
-    </footer>
+<nav>
+  <img src="./logo.png" alt="Logo">
+  <div>
+    <a href="#about">Über mich</a>
+    <a href="#services">Leistungen</a>
+    <a href="#contact">Kontakt</a>
   </div>
+</nav>
+
+<div class="hero">
+  <div class="container">
+
+    <div class="text">
+      <h1>just LEAN it</h1>
+      <p>LEAN Construction für Infrastrukturprojekte</p>
+      <p>
+        Ich unterstütze Bauprojekte dabei, Prozesse zu strukturieren,
+        effizienter zu arbeiten und bessere Ergebnisse zu erzielen.
+      </p>
+
+      <a href="#contact" class="btn">Kontakt aufnehmen</a>
+    </div>
+
+    <div class="image">
+      <!-- HIER DAS BILD -->
+      <img src="./julian.png" alt="Julian Wenger">
+    </div>
+
+  </div>
+</div>
+
+<section id="about">
+  <h2>Über mich</h2>
+  <p>
+    Ich bin Julian Wenger, Bauingenieur mit Fokus auf LEAN Construction
+    im Infrastrukturbereich. Mein Ziel ist es, Projekte effizienter und strukturierter zu machen.
+  </p>
+</section>
+
+<section id="services">
+  <h2>Leistungen</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>LEAN Construction</h3>
+      <p>Optimierung von Bauprozessen.</p>
+    </div>
+    <div class="card">
+      <h3>Prozessoptimierung</h3>
+      <p>Analyse und Verbesserung von Abläufen.</p>
+    </div>
+    <div class="card">
+      <h3>Change Management</h3>
+      <p>Begleitung von Veränderungen.</p>
+    </div>
+    <div class="card">
+      <h3>Projektunterstützung</h3>
+      <p>Direkte Unterstützung im Projekt.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Kontakt</h2>
+  <p>Email: julianwenger1991@gmail.com</p>
+  <p>Telefon: +43 676 6603317</p>
+</section>
+
 </body>
 </html>
