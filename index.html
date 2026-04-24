@@ -306,13 +306,17 @@
     .section-card::before {
       content: "";
       position: absolute;
-      right: -80px;
-      top: -80px;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: rgba(233, 237, 227, 0.9);
+      right: -42px;
+      top: -42px;
+      width: 320px;
+      height: 320px;
+      background: repeating-radial-gradient(
+        circle at 100% 0%,
+        rgba(178, 186, 168, 0.55) 0 3px,
+        transparent 3px 26px
+      );
       z-index: 0;
+      pointer-events: none;
     }
 
     .section-card > * {
