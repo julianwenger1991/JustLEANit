@@ -430,12 +430,24 @@
       background: linear-gradient(180deg, color-mix(in srgb, var(--copper) 14%, white) 0%, var(--offwhite) 54%);
       border: 1px solid color-mix(in srgb, var(--copper) 35%, transparent);
       border-radius: 18px;
-      padding: 18px;
+      padding: 16px 14px;
       text-align: center;
       color: var(--copper);
       font-weight: 800;
       font-size: 0.92rem;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .value-icon {
+      width: 34px;
+      height: 34px;
+      color: var(--olive);
+      flex: 0 0 auto;
     }
 
     .contact-grid {
@@ -629,11 +641,11 @@
           </div>
 
           <div class="values">
-            <div class="value-card">Klarheit</div>
-            <div class="value-card">Effizienz</div>
-            <div class="value-card">Wertschöpfung</div>
-            <div class="value-card">Fortschritt</div>
-            <div class="value-card">Systemdenken</div>
+            <div class="value-card"><svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="4.5"></circle><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"></circle><path d="M12 12l7-7"></path><path d="M17.6 5.2H20v2.4"></path></svg><span>Klarheit</span></div>
+            <div class="value-card"><svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3.5 20.5h17"></path><rect x="5" y="12" width="3" height="6"></rect><rect x="10.5" y="9" width="3" height="9"></rect><rect x="16" y="6" width="3" height="12"></rect><path d="M13 5.5h6v6"></path><path d="M19 5.5l-5.5 5.5"></path></svg><span>Effizienz</span></div>
+            <div class="value-card"><svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="7" cy="8" r="2.4"></circle><circle cx="17" cy="8" r="2.4"></circle><circle cx="12" cy="13" r="2.6"></circle><path d="M3.5 19c.8-2.3 2.7-3.6 5.3-3.6S13.3 16.7 14.1 19"></path><path d="M9.9 19c.8-2.6 2.8-4 5.3-4 2.5 0 4.5 1.4 5.3 4"></path></svg><span>Wertschöpfung</span></div>
+            <div class="value-card"><svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12h14"></path><path d="M11 4l8 8-8 8"></path></svg><span>Fortschritt</span></div>
+            <div class="value-card"><svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4c3.8 2.6 6 5.2 6 8.2A6 6 0 0 1 6 12.2C6 9.2 8.2 6.6 12 4z"></path><path d="M9 15c1.7 1.3 4.3 1.3 6 0"></path><path d="M8.5 18.5l7-7"></path></svg><span>Systemdenken</span></div>
           </div>
         </div>
       </section>
