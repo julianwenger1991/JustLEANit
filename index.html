@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>just LEAN it | Julian Wenger</title>
+  <link rel="icon" type="image/png" href="./logo.png" />
 
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=League+Spartan:wght@700;800&display=swap" rel="stylesheet">
 
@@ -152,8 +153,8 @@
     }
 
     .hero-logo {
-      width: 520px;
-      max-width: 95%;
+      width: 680px;
+      max-width: 100%;
       margin: 0 auto 34px;
       filter: drop-shadow(0 10px 22px rgba(74, 93, 59, 0.16));
     }
@@ -306,13 +307,22 @@
     .section-card::before {
       content: "";
       position: absolute;
-      right: -80px;
-      top: -80px;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: rgba(233, 237, 227, 0.9);
+      right: -110px;
+      top: -110px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(
+        circle at 100% 0%,
+        transparent 0 112px,
+        rgba(186, 193, 178, 0.42) 112px 115px,
+        transparent 115px 152px,
+        rgba(186, 193, 178, 0.34) 152px 155px,
+        transparent 155px 192px,
+        rgba(186, 193, 178, 0.28) 192px 195px,
+        transparent 195px
+      );
       z-index: 0;
+      pointer-events: none;
     }
 
     .section-card > * {
@@ -416,14 +426,27 @@
     }
 
     .value-card {
-      background: var(--offwhite);
-      border: 1px solid var(--line);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--copper) 14%, white) 0%, var(--offwhite) 54%);
+      border: 1px solid color-mix(in srgb, var(--copper) 35%, transparent);
       border-radius: 18px;
-      padding: 18px;
+      padding: 16px 14px;
       text-align: center;
-      color: var(--olive);
+      color: var(--copper);
       font-weight: 800;
       font-size: 0.92rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .value-icon {
+      width: 34px;
+      height: 34px;
+      color: var(--olive);
+      flex: 0 0 auto;
     }
 
     .contact-grid {
@@ -448,6 +471,37 @@
       display: block;
       color: var(--dark);
       margin-bottom: 2px;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 248, 245, 0.96));
+      border: 1px solid color-mix(in srgb, var(--olive) 16%, transparent);
+    }
+
+    .contact-graphic {
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.98), rgba(247, 248, 245, 0.96));
+      border: 1px solid color-mix(in srgb, var(--olive) 18%, transparent);
+    }
+
+    .contact-graphic::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("./signature.png") right -48px bottom -84px / 510px auto no-repeat;
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .contact-graphic p,
+    .contact-graphic > div {
+      position: relative;
+      z-index: 1;
     }
 
     footer {
@@ -497,7 +551,7 @@
       }
 
       .hero-logo {
-        width: 320px;
+        width: 360px;
         max-width: 100%;
       }
 
@@ -617,11 +671,11 @@
           </div>
 
           <div class="values">
-            <div class="value-card">Klarheit</div>
-            <div class="value-card">Effizienz</div>
-            <div class="value-card">Wertschöpfung</div>
-            <div class="value-card">Fortschritt</div>
-            <div class="value-card">Systemdenken</div>
+            <div class="value-card"><svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="4.5"></circle><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"></circle><path d="M12 12l7-7"></path><path d="M17.6 5.2H20v2.4"></path></svg><span>Klarheit</span></div>
+            <div class="value-card"><svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3.5 20.5h17"></path><rect x="5" y="12" width="3" height="6"></rect><rect x="10.5" y="9" width="3" height="9"></rect><rect x="16" y="6" width="3" height="12"></rect><path d="M13 5.5h6v6"></path><path d="M19 5.5l-5.5 5.5"></path></svg><span>Effizienz</span></div>
+            <div class="value-card"><svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="7" cy="8" r="2.4"></circle><circle cx="17" cy="8" r="2.4"></circle><circle cx="12" cy="13" r="2.6"></circle><path d="M3.5 19c.8-2.3 2.7-3.6 5.3-3.6S13.3 16.7 14.1 19"></path><path d="M9.9 19c.8-2.6 2.8-4 5.3-4 2.5 0 4.5 1.4 5.3 4"></path></svg><span>Wertschöpfung</span></div>
+            <div class="value-card"><svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12h14"></path><path d="M11 4l8 8-8 8"></path></svg><span>Fortschritt</span></div>
+            <div class="value-card"><svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4c3.8 2.6 6 5.2 6 8.2A6 6 0 0 1 6 12.2C6 9.2 8.2 6.6 12 4z"></path><path d="M9 15c1.7 1.3 4.3 1.3 6 0"></path><path d="M8.5 18.5l7-7"></path></svg><span>Systemdenken</span></div>
           </div>
         </div>
       </section>
@@ -898,7 +952,7 @@
           <h2 class="section-title">Lass uns ins Gespräch kommen</h2>
 
           <div class="contact-grid">
-            <div class="soft-box">
+            <div class="soft-box contact-card">
               <div class="contact-list">
                 <div class="contact-line">
                   <strong>Name</strong>
@@ -916,10 +970,14 @@
                   <strong>Telefon</strong>
                   <a href="tel:+436766603317">+43 676 6603317</a>
                 </div>
+                <div class="contact-line">
+                  <strong>LinkedIn</strong>
+                  <a href="https://www.linkedin.com/in/julian-wenger/" target="_blank" rel="noopener noreferrer">linkedin.com/in/julian-wenger</a>
+                </div>
               </div>
             </div>
 
-            <div class="soft-box">
+            <div class="soft-box contact-graphic">
               <p>
                 Für Austausch, erste Gespräche oder zukünftige Zusammenarbeit im Bereich
                 LEAN Construction für Infrastrukturprojekte.
