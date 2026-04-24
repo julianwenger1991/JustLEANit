@@ -307,14 +307,19 @@
     .section-card::before {
       content: "";
       position: absolute;
-      right: -42px;
-      top: -42px;
-      width: 320px;
-      height: 320px;
-      background: repeating-radial-gradient(
+      right: -110px;
+      top: -110px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(
         circle at 100% 0%,
-        rgba(178, 186, 168, 0.55) 0 3px,
-        transparent 3px 26px
+        transparent 0 112px,
+        rgba(186, 193, 178, 0.42) 112px 115px,
+        transparent 115px 152px,
+        rgba(186, 193, 178, 0.34) 152px 155px,
+        transparent 155px 192px,
+        rgba(186, 193, 178, 0.28) 192px 195px,
+        transparent 195px
       );
       z-index: 0;
       pointer-events: none;
@@ -421,14 +426,15 @@
     }
 
     .value-card {
-      background: var(--offwhite);
-      border: 1px solid var(--line);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--copper) 14%, white) 0%, var(--offwhite) 54%);
+      border: 1px solid color-mix(in srgb, var(--copper) 35%, transparent);
       border-radius: 18px;
       padding: 18px;
       text-align: center;
-      color: var(--olive);
+      color: var(--copper);
       font-weight: 800;
       font-size: 0.92rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
     }
 
     .contact-grid {
