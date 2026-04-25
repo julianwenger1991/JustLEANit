@@ -431,7 +431,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
+    }
+
+    .icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--olive);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .values {
@@ -711,7 +720,13 @@
 
           <div class="grid-2">
             <div class="item-card">
-              <div class="icon">↗</div>
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M3 17.5h18"></path>
+                  <path d="M4 16.5c3.1-1.6 4.8-4.2 6.4-7.2 1.3-2.4 3.1-3.8 5.8-3.8h3.8"></path>
+                  <path d="M16.5 2.8h3.5v3.5"></path>
+                </svg>
+              </div>
               <h3>LEAN Construction</h3>
               <p>
                 Einführung, Weiterentwicklung und praxisnahe Anwendung von LEAN-Prinzipien
@@ -720,7 +735,19 @@
             </div>
 
             <div class="item-card">
-              <div class="icon">✓</div>
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="3.2"></circle>
+                  <path d="M12 4.2v2"></path>
+                  <path d="M12 17.8v2"></path>
+                  <path d="M4.2 12h2"></path>
+                  <path d="M17.8 12h2"></path>
+                  <path d="M6.7 6.7l1.4 1.4"></path>
+                  <path d="M15.9 15.9l1.4 1.4"></path>
+                  <path d="M17.3 6.7l-1.4 1.4"></path>
+                  <path d="M8.1 15.9l-1.4 1.4"></path>
+                </svg>
+              </div>
               <h3>Prozessoptimierung</h3>
               <p>
                 Analyse bestehender Abläufe, Identifikation von Engpässen und Entwicklung
@@ -729,7 +756,13 @@
             </div>
 
             <div class="item-card">
-              <div class="icon">→</div>
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M18.5 9.2A8 8 0 1 0 20 14"></path>
+                  <path d="M20 5.5v5h-5"></path>
+                  <path d="M20 10.5L15.8 6.3"></path>
+                </svg>
+              </div>
               <h3>Change Management</h3>
               <p>
                 Begleitung von Veränderungsprozessen mit Fokus auf Akzeptanz, Kommunikation
@@ -738,7 +771,13 @@
             </div>
 
             <div class="item-card">
-              <div class="icon">◎</div>
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="8"></circle>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle cx="12" cy="12" r="1.3" fill="var(--olive)" stroke="none"></circle>
+                </svg>
+              </div>
               <h3>Projektnahe Umsetzung</h3>
               <p>
                 Lösungen mit technischem Verständnis, operativem Praxisbezug und klarem Blick
