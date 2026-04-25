@@ -1,189 +1,1073 @@
 <!DOCTYPE html>
+<!-- update -->
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>just LEAN it</title>
   <link rel="icon" type="image/png" href="./logo.png" />
+
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=League+Spartan:wght@700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            olive: '#4A5D3B',
-            copper: '#B05A2B',
-            stonegreen: '#6B6F6A',
-            lightolive: '#E9EDE3',
-            offwhite: '#F7F8F5',
-            darkforest: '#2F332E'
-          },
-          fontFamily: {
-            sans: ['DM Sans', 'Arial', 'sans-serif'],
-            display: ['League Spartan', 'Arial', 'sans-serif']
-          },
-          boxShadow: {
-            card: '0 18px 50px rgba(47, 51, 46, 0.10)',
-            soft: '0 24px 70px rgba(47, 51, 46, 0.16)'
-          }
-        }
+
+  <style>
+    :root {
+      --olive: #4A5D3B;
+      --gray: #6B6F6A;
+      --dark: #2F332E;
+      --light-olive: #E9EDE3;
+      --offwhite: #F7F8F5;
+      --copper: #B05A2B;
+      --text: #2F332E;
+      --muted: #6B6F6A;
+      --line: rgba(74, 93, 59, 0.16);
+      --shadow: 0 24px 70px rgba(47, 51, 46, 0.18);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "DM Sans", Arial, sans-serif;
+      background:
+        linear-gradient(90deg, rgba(247,248,245,0.88), rgba(247,248,245,0.74)),
+        url("./background.png") center center / cover fixed no-repeat;
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: auto;
+    }
+
+    h1, h2, h3 {
+      font-family: "League Spartan", Arial, sans-serif;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(247, 248, 245, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand img { height: 58px; width: auto; }
+
+    .brand-text strong {
+      display: block;
+      color: var(--olive);
+      font-weight: 800;
+    }
+
+    .brand-text span {
+      color: var(--gray);
+      font-size: 0.84rem;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--gray);
+      font-weight: 700;
+      font-size: 0.94rem;
+    }
+
+    .nav a:hover { color: var(--olive); }
+
+    .nav .cta-link {
+      background: var(--olive);
+      color: white;
+      padding: 11px 18px;
+      border-radius: 999px;
+    }
+
+    .hero {
+      position: relative;
+      padding: 42px 0 34px;
+      overflow: visible;
+      background: transparent;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(var(--olive) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-left,
+    .hero-right {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: rgba(247, 248, 245, 0.84);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-left {
+      padding: 22px 38px 28px;
+      overflow: visible;
+      position: relative;
+    }
+
+    .hero-logo {
+      width: 460px;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto 6px;
+      transform: scale(1.0);
+      transform-origin: center;
+      filter: drop-shadow(0 10px 22px rgba(74, 93, 59, 0.14)) drop-shadow(0 0 12px rgba(176, 90, 43, 0.08));
+    }
+
+    .hero-kicker {
+      color: var(--copper);
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 3.8vw, 4.2rem);
+      max-width: 100%;
+      margin-top: 6px;
+      margin-bottom: 12px;
+      color: var(--dark);
+      overflow: visible;
+      word-break: normal;
+    }
+
+    .hero h1 .line { display: block; }
+    .hero h1 .accent { color: var(--olive); }
+
+    .lead {
+      color: var(--gray);
+      font-size: 1.08rem;
+      max-width: 58ch;
+      margin-bottom: 28px;
+    }
+
+    .promise {
+      border-left: 4px solid var(--copper);
+      padding: 14px 0 14px 18px;
+      margin-bottom: 28px;
+      color: var(--dark);
+      font-weight: 700;
+      max-width: 54ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--olive);
+      color: white;
+    }
+
+    .btn-primary::after,
+    .btn-copper::after {
+      content: "→";
+      margin-left: 14px;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-copper:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--line);
+      color: var(--olive);
+      background: white;
+    }
+
+    .btn-copper {
+      background: var(--copper);
+      color: white;
+    }
+
+    .hero-right {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .portrait-card {
+      border-radius: 26px;
+      overflow: hidden;
+      background: var(--light-olive);
+      border: 1px solid var(--line);
+      min-height: 420px;
+    }
+
+    .portrait-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .quote-card {
+      background: var(--light-olive);
+      color: var(--dark);
+      border-radius: 24px;
+      padding: 22px 20px 18px;
+      text-align: center;
+      border: 1px solid var(--line);
+      margin-top: -10px;
+      margin-bottom: 0;
+    }
+
+    .quote-card p {
+      max-width: 42ch;
+      margin: 0 auto 18px;
+      font-weight: 800;
+    }
+
+    .quote-card strong { color: var(--olive); }
+
+    .signature {
+      width: 230px;
+      margin: 0 auto 10px;
+      filter: brightness(0) saturate(100%) invert(31%) sepia(17%) saturate(850%) hue-rotate(49deg) brightness(88%) contrast(85%);
+      opacity: 0.95;
+    }
+
+    .quote-name {
+      color: var(--olive);
+      font-weight: 800;
+    }
+
+    section { padding: 28px 0; }
+
+    .section-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 18px 50px rgba(47, 51, 46, 0.08);
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-card::before {
+      content: "";
+      position: absolute;
+      right: -110px;
+      top: -110px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(
+        circle at 100% 0%,
+        transparent 0 112px,
+        rgba(186, 193, 178, 0.42) 112px 115px,
+        transparent 115px 152px,
+        rgba(186, 193, 178, 0.34) 152px 155px,
+        transparent 155px 192px,
+        rgba(186, 193, 178, 0.28) 192px 195px,
+        transparent 195px
+      );
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .section-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-label {
+      color: var(--olive);
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3vw, 3rem);
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    .section-intro {
+      color: var(--gray);
+      max-width: 72ch;
+      margin-bottom: 24px;
+    }
+
+    .soft-box {
+      background: var(--light-olive);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .soft-box p + p { margin-top: 12px; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .item-card {
+      background: var(--offwhite);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: 0.22s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .item-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(47,51,46,0.10);
+    }
+
+    .item-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+      color: var(--olive);
+    }
+
+    .item-card p,
+    .item-card li,
+    .soft-box p,
+    .contact-line span,
+    .contact-line a {
+      color: var(--gray);
+    }
+
+    .item-card ul { padding-left: 18px; }
+    .item-card li + li { margin-top: 6px; }
+
+    .services-image-card {
+      margin-bottom: 18px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(47, 51, 46, 0.10);
+      background: white;
+    }
+
+    .services-image-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .icon {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--olive);
+      color: var(--olive);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .values {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .value-card {
+      background: linear-gradient(180deg, color-mix(in srgb, var(--copper) 14%, white) 0%, var(--offwhite) 54%);
+      border: 1px solid color-mix(in srgb, var(--copper) 35%, transparent);
+      border-radius: 18px;
+      padding: 16px 14px;
+      text-align: center;
+      color: var(--copper);
+      font-weight: 800;
+      font-size: 0.92rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .value-icon {
+      width: 34px;
+      height: 34px;
+      color: var(--olive);
+      flex: 0 0 auto;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-line {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: var(--offwhite);
+      border: 1px solid var(--line);
+    }
+
+    .contact-line strong {
+      display: block;
+      color: var(--dark);
+      margin-bottom: 2px;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 248, 245, 0.96));
+      border: 1px solid color-mix(in srgb, var(--olive) 16%, transparent);
+    }
+
+    .contact-graphic {
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.98), rgba(247, 248, 245, 0.96));
+      border: 1px solid color-mix(in srgb, var(--olive) 18%, transparent);
+    }
+
+    .contact-graphic::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("./signature.png") right -48px bottom -84px / 510px auto no-repeat;
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .contact-graphic p,
+    .contact-graphic > div {
+      position: relative;
+      z-index: 1;
+    }
+
+    footer {
+      padding: 34px 0 50px;
+      color: var(--gray);
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
       }
-    };
-  </script>
+
+      .portrait-card { min-height: 420px; }
+      .values { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 820px) {
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 0;
+      }
+
+      .nav { gap: 12px; }
+
+      .hero-left,
+      .hero-right,
+      .section-card {
+        padding: 22px;
+      }
+
+      .hero-logo {
+        width: 460px;
+        max-width: 100%;
+      }
+
+      .hero-actions { flex-direction: column; }
+
+      .btn { width: 100%; }
+
+      .values { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body class="bg-offwhite text-darkforest antialiased selection:bg-olive/20" style="background-image: linear-gradient(90deg, rgba(247,248,245,0.92), rgba(247,248,245,0.80)), url('./background.png'); background-size: cover; background-attachment: fixed;">
-  <header class="sticky top-0 z-40 border-b border-olive/15 bg-offwhite/90 backdrop-blur">
-    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-      <a href="#home" class="flex items-center gap-3">
-        <img src="./logo.png" alt="just LEAN it Logo" class="h-12 w-auto sm:h-14">
+
+<body>
+  <div class="site">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a href="#home" class="brand">
+          <img src="./logo.png" alt="just LEAN it Logo">
+          <div class="brand-text">
+            <strong>just LEAN it</strong>
+            <span>LEAN Construction für Infrastrukturprojekte</span>
+          </div>
+        </a>
+
+        <nav class="nav">
+          <a href="#about">Über mich</a>
+          <a href="#services">Leistungen</a>
+          <a href="#lean-projects">LEAN Projekte</a>
+          <a href="#qualifications">Qualifikationen</a>
+          <a href="#experience">Erfahrung</a>
+          <a href="#contact" class="cta-link">Kontakt</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-left">
+            <img src="./logo.png" alt="just LEAN it Logo" class="hero-logo">
+
+            <div class="hero-kicker">Klarheit · Effizienz · Wertschöpfung</div>
+
+            <h1>
+              <span class="line">LEAN Construction</span>
+              <span class="line">für</span>
+              <span class="line accent">Infrastrukturprojekte</span>
+            </h1>
+
+            <p class="lead">
+              Ich bin <strong>Julian Wenger</strong> und positioniere mich mit
+              <strong>just LEAN it</strong> auf LEAN Construction, Prozessoptimierung
+              und Change Management im Bau- und Infrastrukturumfeld.
+            </p>
+
+            <div class="promise">
+              Wir machen Wertschöpfung im Bauprozess sichtbar. Für mehr Effizienz,
+              weniger Verschwendung und nachhaltigen Projekterfolg.
+            </div>
+
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">Kontakt aufnehmen</a>
+              <a href="#about" class="btn btn-secondary">Mehr erfahren</a>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="portrait-card">
+              <img src="./julian.png" alt="Julian Wenger">
+            </div>
+
+            <div class="quote-card">
+              <p>
+                „Mit <strong>LEAN Construction</strong> die <strong>Wertschöpfung</strong>
+                in Ihrem Infrastrukturprojekt gezielt erhöhen.“
+              </p>
+              <img src="./signature.png" alt="Unterschrift Julian Wenger" class="signature">
+              <div class="quote-name">Dipl.-Ing. Julian Wenger, MBA</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="container section-card">
+          <span class="section-label">Über mich</span>
+          <h2 class="section-title">Klare Abläufe.<br>Weniger Verschwendung.<br>Bessere Projekte.</h2>
+          <p class="section-intro">
+            Ich verbinde technisches Verständnis aus dem Infrastruktur- und Tunnelbau
+            mit fundierter Ausbildung in Projekt-, Prozess- und Change Management.
+          </p>
+
+          <div class="soft-box">
+            <p>
+              <strong>Mit LEAN Construction und Baulogistik kontinuierlich Bauabläufe beschleunigen.</strong>
+            </p>
+            <p>
+              Ich bin Julian Wenger – LEAN Manager, Bauingenieur, Change Manager und Fachexperte
+              im Tunnelbau- und Ingenieurtiefbau. Mein Ziel ist es, Bauprojekte effizienter,
+              wertschöpfender und nachhaltiger zu gestalten.
+            </p>
+            <p>
+              Meine erste intensive berufliche Erfahrung mit der LEAN-Philosophie machte ich 2019
+              im Rahmen des <strong>North Yorkshire Polyhalite Project</strong> in Großbritannien.
+              Seitdem verfolge ich mit Leidenschaft das Ziel, komplexe Bauvorhaben durch strukturierte Abläufe,
+              bessere Zusammenarbeit und praxisnahe Prozessoptimierung wirksam zu verbessern.
+            </p>
+            <p>
+              Heute unterstütze ich die <strong>PORR Group</strong> aktiv bei der LEAN-Transformation
+              und begleite Projekte in unterschiedlichen Bereichen, darunter Tunnelbau, Tiefbau, Hochbau,
+              Revitalisierung und Planung.
+            </p>
+            <p>
+              <strong>Mein Ziel:</strong> Bauprojekte effizienter und nachhaltiger zu gestalten –
+              für eine zukunftsorientierte Bauindustrie.
+            </p>
+          </div>
+
+          <div class="values">
+            <div class="value-card"><i class="value-icon" data-lucide="target" aria-hidden="true"></i><span>Klarheit</span></div>
+            <div class="value-card"><i class="value-icon" data-lucide="trending-up" aria-hidden="true"></i><span>Effizienz</span></div>
+            <div class="value-card"><i class="value-icon" data-lucide="coins" aria-hidden="true"></i><span>Wertschöpfung</span></div>
+            <div class="value-card"><i class="value-icon" data-lucide="arrow-right" aria-hidden="true"></i><span>Fortschritt</span></div>
+            <div class="value-card"><i class="value-icon" data-lucide="network" aria-hidden="true"></i><span>Systemdenken</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services">
+        <div class="container section-card">
+          <span class="section-label">Leistungen</span>
+          <h2 class="section-title">Wobei ich unterstützen kann</h2>
+          <p class="section-intro">
+            Die folgenden Themen bilden die Grundlage meiner Positionierung im Bereich
+            LEAN Construction für Infrastrukturprojekte.
+          </p>
+
+          <div class="services-image-card">
+            <img src="./support.png" alt="LEAN Prinzip und Prozessvisualisierung" />
+          </div>
+
+          <div class="grid-2">
+            <div class="item-card">
+              <div class="icon" aria-hidden="true">
+                <i data-lucide="building-2"></i>
+              </div>
+              <h3>LEAN Construction</h3>
+              <p>
+                Einführung, Weiterentwicklung und praxisnahe Anwendung von LEAN-Prinzipien
+                im Bau- und Infrastrukturumfeld.
+              </p>
+            </div>
+
+            <div class="item-card">
+              <div class="icon" aria-hidden="true">
+                <i data-lucide="settings"></i>
+              </div>
+              <h3>Prozessoptimierung</h3>
+              <p>
+                Analyse bestehender Abläufe, Identifikation von Engpässen und Entwicklung
+                klarer, robuster Prozessstrukturen.
+              </p>
+            </div>
+
+            <div class="item-card">
+              <div class="icon" aria-hidden="true">
+                <i data-lucide="refresh-cw"></i>
+              </div>
+              <h3>Change Management</h3>
+              <p>
+                Begleitung von Veränderungsprozessen mit Fokus auf Akzeptanz, Kommunikation
+                und nachhaltige Umsetzung.
+              </p>
+            </div>
+
+            <div class="item-card">
+              <div class="icon" aria-hidden="true">
+                <i data-lucide="target"></i>
+              </div>
+              <h3>Projektnahe Umsetzung</h3>
+              <p>
+                Lösungen mit technischem Verständnis, operativem Praxisbezug und klarem Blick
+                auf reale Projektbedingungen.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lean-projects">
+        <div class="container section-card">
+          <span class="section-label">Umgesetzte LEAN Projekte</span>
+          <h2 class="section-title">Methoden, die auf Baustellen Wirkung erzeugen</h2>
+          <p class="section-intro">
+            Referenzen und konkrete Projektbeispiele aus unterschiedlichen Bau- und Infrastrukturprojekten.
+          </p>
+
+          <div class="services-image-card">
+            <img src="./methoden.png" alt="Methoden im LEAN Projektumfeld" />
+          </div>
+
+          <div class="grid-3">
+            <div class="item-card">
+              <div class="icon">
+                <i data-lucide="calendar-check"></i>
+              </div>
+              <h3>Last Planner System</h3>
+              <ul>
+                <li>LHS300 (Graz) – Industriebau</li>
+                <li>Muthgasse 105 (Wien) – Hochbau</li>
+                <li>Leopoldquartier (Wien) – Hochbau</li>
+                <li>RISE Siemens (St. Ruprecht) – Industriebau</li>
+                <li>ARIO Klinik Favoriten (Wien) – Revitalisierung</li>
+                <li>An der Schanze (Wien) – Hochbau</li>
+                <li>Hotel Bristol (Wien) – Revitalisierung</li>
+                <li>Luegbrücke (Gries) – Ingenieurbau</li>
+                <li>Pumpspeicherkraftwerk Forbach (Forbach, D) – Tunnelbau</li>
+                <li>3SI Rotenlöwengasse (Wien) – Revitalisierung</li>
+                <li>Klimatunnel Linz (Linz) – Microtunnelling</li>
+              </ul>
+            </div>
+
+            <div class="item-card">
+              <div class="icon">
+                <i data-lucide="clipboard-list"></i>
+              </div>
+              <h3>Shopfloor Management</h3>
+              <ul>
+                <li>PORR Tiefbau Wien (Wien) – div. Baustellen</li>
+                <li>Tunnelkette Pack (Edelschrott) – Tunnelbau</li>
+                <li>Pumpspeicherkraftwerk Forbach (Forbach, D) – Tunnelbau</li>
+                <li>Klimatunnel Linz (Linz) – Microtunnelling</li>
+                <li>Regelkommunikationskaskade PORR Tunnelbau (Wien) – Tunnelbau</li>
+                <li>Brenner Basistunnel H53 (Steinach a. Brenner) – Tunnelbau</li>
+              </ul>
+            </div>
+
+            <div class="item-card">
+              <div class="icon">
+                <i data-lucide="workflow"></i>
+              </div>
+              <h3>Wertstromanalyse</h3>
+              <ul>
+                <li>Brenner Basistunnel H53 (Steinach a. Brenner) – Tunnelbau, Tübbinglogistik</li>
+              </ul>
+            </div>
+
+            <div class="item-card">
+              <div class="icon">
+                <i data-lucide="trending-up"></i>
+              </div>
+              <h3>KVP-Projekte</h3>
+              <ul>
+                <li>North Yorkshire Polyhalite Project (Redcar, UK) – Tunnelbau, Reduktion TBM Bohrkopfverstopfung</li>
+                <li>Brenner Basistunnel H53 (Steinach a. Brenner) – Tunnelbau, Tübbinglogistik Störungsticker</li>
+                <li>Sibiu-Pitesti Lot 4 (RO) – Tunnelbau, Optimierung Anschlussfugenqualität SpC</li>
+                <li>Aufbau LEAN Expertenforum Tunnelbau (Wien) – Tunnelbau, LEAN Experten-Netzwerk</li>
+              </ul>
+            </div>
+
+            <div class="item-card">
+              <div class="icon">
+                <i data-lucide="search"></i>
+              </div>
+              <h3>LEAN Quick Check</h3>
+              <p>
+                Schnelle Standortbestimmung zur Identifikation von Potenzialen und konkreten Maßnahmen.
+              </p>
+            </div>
+
+            <div class="item-card">
+              <div class="icon">
+                <i data-lucide="graduation-cap"></i>
+              </div>
+              <h3>LEAN-Ausbildungen</h3>
+              <ul>
+                <li>LEAN Basis Ausbildung (Ganztag)</li>
+                <li>LEAN Poliertraining (Halbtag)</li>
+                <li>LEAN Expertenausbildung (5 Module)</li>
+                <li>LEAN Leader Ausbildung (5 Module)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="qualifications">
+        <div class="container section-card">
+          <span class="section-label">Ausbildung & Qualifikationen</span>
+          <h2 class="section-title">Technische Basis.<br>LEAN Fokus.<br>Veränderungskompetenz.</h2>
+
+          <div class="grid-2">
+            <div class="item-card">
+              <h3>Akademische Ausbildung</h3>
+              <ul>
+                <li>CAS in Change Management & Innovation, Lunex University</li>
+                <li>MBA in Projekt- & Prozessmanagement, Hochschule Burgenland</li>
+                <li>MSc in Geotechnical and Hydraulic Engineering, TU Graz</li>
+                <li>BSc in Bauingenieurwesen & Wirtschaftsingenieurwesen, TU Graz</li>
+                <li>Auslandssemester in Geotechnical Engineering, NTUST</li>
+                <li>HTL-Matura in Maschinenbau & Anlagentechnik, HTL Vöcklabruck</li>
+              </ul>
+            </div>
+
+            <div class="item-card">
+              <h3>LEAN & Prozessoptimierung</h3>
+              <ul>
+                <li>LEAN Construction Expertenausbildung nach VDI 2553</li>
+                <li>LEAN Six Sigma Black Belt</li>
+                <li>LEAN Six Sigma Green Belt</li>
+              </ul>
+            </div>
+
+            <div class="item-card">
+              <h3>Change, Leadership & Digitalisierung</h3>
+              <ul>
+                <li>Change Management Grundlagen</li>
+                <li>Digital Leadership – Führen in digitalen Zeiten</li>
+              </ul>
+            </div>
+
+            <div class="item-card">
+              <h3>Kommunikation & Leadership Skills</h3>
+              <ul>
+                <li>Kommunikationsseminar & Business Coaching</li>
+                <li>Gezielt kommunizieren, erfolgreich agieren</li>
+                <li>Konfliktvermeidung und -lösung</li>
+                <li>Lösungsorientierte Verhandlungsführung</li>
+                <li>Moderne Business Präsentation & Rhetorik</li>
+              </ul>
+            </div>
+
+            <div class="item-card">
+              <h3>Weitere Fachausbildungen</h3>
+              <ul>
+                <li>Sicherheitsvertrauensperson (SVP)</li>
+                <li>Nachwuchsingenieurprogramm Tunnelbau</li>
+                <li>Pflichten des Bauleiters (ÖBV Fachseminar)</li>
+                <li>Sprengbefugnis „Allgemeine Sprengarbeiten“</li>
+                <li>Sprengbefugnis „Tiefbohrlochsprengarbeiten“</li>
+              </ul>
+            </div>
+
+            <div class="item-card">
+              <h3>Sprachen</h3>
+              <ul>
+                <li>Deutsch</li>
+                <li>Englisch</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="container section-card">
+          <span class="section-label">Berufserfahrung</span>
+          <h2 class="section-title">Praxis aus Bau, Infrastruktur und LEAN Construction</h2>
+
+          <div class="grid-2">
+            <div class="item-card">
+              <h3>PORR Group</h3>
+              <ul>
+                <li>LEAN Business Partner</li>
+                <li>Senior LEAN Construction Manager</li>
+                <li>LEAN Construction Manager</li>
+              </ul>
+            </div>
+
+            <div class="item-card">
+              <h3>STRABAG AG</h3>
+              <ul>
+                <li>LEAN Construction Experte</li>
+                <li>Contract Manager (Tunnelbau)</li>
+                <li>Tunnel Schichtbauleiter</li>
+                <li>Bautechniker Bauleitung & Arbeitsvorbereitung</li>
+                <li>Bautechniker Technischer Innendienst / Angebotsbearbeitung</li>
+                <li>Abrechnungstechniker (Ingenieurtiefbau)</li>
+              </ul>
+            </div>
+
+            <div class="item-card" style="grid-column: 1 / -1;">
+              <h3>Operative Projekterfahrung</h3>
+              <ul>
+                <li>Koralmtunnel Baulos KAT2 (Ö): Bautechniker</li>
+                <li>S3C3 Link Sewers for DTSS2 (SG): Bautechniker</li>
+                <li>North Yorkshire Polyhalite Project (GB): Tunnel Schichtbauleiter</li>
+                <li>Stadtstraße Aspern (Ö): Abrechnungstechniker</li>
+              </ul>
+            </div>
+
+            <div class="item-card" style="grid-column: 1 / -1;">
+              <h3>Weitere praktische Erfahrung</h3>
+              <p>
+                Praktika in Sondermaschinenbau, Hochbau, Tiefbau, Fassadenbau und Tunnelbau.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="awards">
+        <div class="container section-card">
+          <span class="section-label">Auszeichnungen</span>
+          <h2 class="section-title">Anerkennung für technische und wissenschaftliche Arbeit</h2>
+
+          <div class="grid-2">
+            <div class="item-card">
+              <h3>Arbeiterkammer Wissenschaftspreis 2022</h3>
+              <p>Verliehen von der Arbeiterkammer Oberösterreich</p>
+              <p>Thema: Influence of COVID-19 on a major construction site (UK)</p>
+            </div>
+
+            <div class="item-card">
+              <h3>ÖGG Förderpreis 2018</h3>
+              <p>Verliehen von der Austrian Society of Geomechanics</p>
+              <p>Thema: Optimisation of Connecting Elements for Shotcrete Linings</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container section-card">
+          <span class="section-label">Kontakt</span>
+          <h2 class="section-title">Lass uns ins Gespräch kommen</h2>
+
+          <div class="contact-grid">
+            <div class="soft-box contact-card">
+              <div class="contact-list">
+                <div class="contact-line">
+                  <strong>Name</strong>
+                  <span>Julian Wenger</span>
+                </div>
+                <div class="contact-line">
+                  <strong>Marke</strong>
+                  <span>just LEAN it</span>
+                </div>
+                <div class="contact-line">
+                  <strong>E-Mail</strong>
+                  <a href="mailto:julianwenger1991@gmail.com">julianwenger1991@gmail.com</a>
+                </div>
+                <div class="contact-line">
+                  <strong>Telefon</strong>
+                  <a href="tel:+436766603317">+43 676 6603317</a>
+                </div>
+                <div class="contact-line">
+                  <strong>LinkedIn</strong>
+                  <a href="https://www.linkedin.com/in/julian-wenger/" target="_blank" rel="noopener noreferrer">linkedin.com/in/julian-wenger</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="soft-box contact-graphic">
+              <div class="services-image-card">
+                <img src="./kontakt.png" alt="Kontaktaufnahme im LEAN-Umfeld" />
+              </div>
+              <p>
+                Für Austausch, erste Gespräche oder zukünftige Zusammenarbeit im Bereich
+                LEAN Construction für Infrastrukturprojekte.
+              </p>
+              <div style="margin-top: 18px;">
+                <a href="mailto:julianwenger1991@gmail.com" class="btn btn-copper">E-Mail senden</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div>© 2026 just LEAN it · Julian Wenger</div>
         <div>
-          <p class="font-display text-2xl leading-none text-olive">just LEAN it</p>
-          <p class="text-xs text-stonegreen">LEAN Construction für Infrastrukturprojekte</p>
-        </div>
-      </a>
-      <nav class="hidden items-center gap-5 text-sm font-bold text-stonegreen md:flex">
-        <a href="#about" class="hover:text-olive">Über mich</a>
-        <a href="#services" class="hover:text-olive">Leistungen</a>
-        <a href="#lean-projects" class="hover:text-olive">LEAN Projekte</a>
-        <a href="#qualifications" class="hover:text-olive">Qualifikationen</a>
-        <a href="#experience" class="hover:text-olive">Erfahrung</a>
-        <a href="#contact" class="rounded-full bg-olive px-4 py-2 text-white">Kontakt</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="home" class="pb-12">
-    <section class="mx-auto grid max-w-6xl gap-6 px-4 pt-6 sm:px-6 lg:grid-cols-2">
-      <div class="rounded-3xl border border-olive/15 bg-offwhite/90 p-5 shadow-soft sm:p-8">
-        <img src="./logo.png" alt="just LEAN it Logo" class="mx-auto mb-2 w-full max-w-xs drop-shadow sm:max-w-sm">
-        <p class="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-copper">Klarheit · Effizienz · Wertschöpfung</p>
-        <h1 class="font-display text-4xl leading-[0.95] text-darkforest sm:text-5xl lg:text-6xl">
-          <span class="block">LEAN Construction</span>
-          <span class="block">für</span>
-          <span class="block text-olive">Infrastrukturprojekte</span>
-        </h1>
-        <p class="mt-4 max-w-2xl text-stonegreen">
-          Ich bin <strong>Julian Wenger</strong> und positioniere mich mit
-          <strong>just LEAN it</strong> auf LEAN Construction, Prozessoptimierung
-          und Change Management im Bau- und Infrastrukturumfeld.
-        </p>
-        <p class="mt-5 border-l-4 border-copper pl-4 font-semibold text-darkforest">
-          Wir machen Wertschöpfung im Bauprozess sichtbar. Für mehr Effizienz,
-          weniger Verschwendung und nachhaltigen Projekterfolg.
-        </p>
-        <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-          <a href="#contact" class="inline-flex min-h-11 items-center justify-center rounded-full bg-olive px-6 font-bold text-white">Kontakt aufnehmen</a>
-          <a href="#about" class="inline-flex min-h-11 items-center justify-center rounded-full border border-olive/20 bg-white px-6 font-bold text-olive">Mehr erfahren</a>
+          LEAN Construction für Infrastrukturprojekte ·
+          <a href="./datenschutz.html">Datenschutz</a> ·
+          <a href="./impressum.html">Impressum</a>
         </div>
       </div>
-
-      <div class="rounded-3xl border border-olive/15 bg-offwhite/90 p-4 shadow-soft sm:p-5">
-        <div class="overflow-hidden rounded-3xl border border-olive/15 bg-lightolive">
-          <img src="./julian.png" alt="Julian Wenger" class="h-[26rem] w-full object-cover object-top sm:h-[30rem]">
-        </div>
-        <div class="mt-4 rounded-3xl border border-olive/15 bg-lightolive p-5 text-center">
-          <p class="font-bold text-darkforest">„Mit <span class="text-olive">LEAN Construction</span> die <span class="text-olive">Wertschöpfung</span> in Ihrem Infrastrukturprojekt gezielt erhöhen.“</p>
-          <img src="./signature.png" alt="Unterschrift Julian Wenger" class="mx-auto mt-4 w-52 opacity-90" style="filter: brightness(0) saturate(100%) invert(31%) sepia(17%) saturate(850%) hue-rotate(49deg) brightness(88%) contrast(85%);">
-          <p class="mt-2 font-bold text-olive">Dipl.-Ing. Julian Wenger, MBA</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="mx-auto mt-6 max-w-6xl px-4 sm:px-6">
-      <div class="rounded-3xl border border-olive/15 bg-white p-6 shadow-card sm:p-8">
-        <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-olive">Über mich</p>
-        <h2 class="mt-2 font-display text-4xl leading-[0.95] sm:text-5xl">Klare Abläufe.<br>Weniger Verschwendung.<br>Bessere Projekte.</h2>
-        <p class="mt-4 max-w-3xl text-stonegreen">Ich verbinde technisches Verständnis aus dem Infrastruktur- und Tunnelbau mit fundierter Ausbildung in Projekt-, Prozess- und Change Management.</p>
-        <div class="mt-6 rounded-2xl border border-olive/15 bg-lightolive p-5 text-stonegreen">
-          <p><strong class="text-darkforest">Mit LEAN Construction und Baulogistik kontinuierlich Bauabläufe beschleunigen.</strong></p>
-          <p class="mt-3">Ich bin Julian Wenger – LEAN Manager, Bauingenieur, Change Manager und Fachexperte im Tunnelbau- und Ingenieurtiefbau. Mein Ziel ist es, Bauprojekte effizienter, wertschöpfender und nachhaltiger zu gestalten.</p>
-          <p class="mt-3">Meine erste intensive berufliche Erfahrung mit der LEAN-Philosophie machte ich 2019 im Rahmen des <strong class="text-darkforest">North Yorkshire Polyhalite Project</strong> in Großbritannien.</p>
-          <p class="mt-3">Heute unterstütze ich die <strong class="text-darkforest">PORR Group</strong> aktiv bei der LEAN-Transformation und begleite Projekte in unterschiedlichen Bereichen.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="mx-auto mt-6 max-w-6xl px-4 sm:px-6">
-      <div class="rounded-3xl border border-olive/15 bg-white p-6 shadow-card sm:p-8">
-        <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-olive">Leistungen</p>
-        <h2 class="mt-2 font-display text-4xl leading-[0.95] sm:text-5xl">Wobei ich unterstützen kann</h2>
-        <img src="./support.png" alt="LEAN Prinzip und Prozessvisualisierung" class="mt-5 rounded-2xl border border-olive/15">
-        <div class="mt-5 grid gap-4 md:grid-cols-2">
-          <article class="rounded-2xl border border-olive/15 bg-offwhite p-5"><h3 class="font-display text-2xl text-olive">LEAN Construction</h3><p class="mt-2 text-stonegreen">Einführung, Weiterentwicklung und praxisnahe Anwendung von LEAN-Prinzipien im Bau- und Infrastrukturumfeld.</p></article>
-          <article class="rounded-2xl border border-olive/15 bg-offwhite p-5"><h3 class="font-display text-2xl text-olive">Prozessoptimierung</h3><p class="mt-2 text-stonegreen">Analyse bestehender Abläufe, Identifikation von Engpässen und Entwicklung klarer Prozessstrukturen.</p></article>
-          <article class="rounded-2xl border border-olive/15 bg-offwhite p-5"><h3 class="font-display text-2xl text-olive">Change Management</h3><p class="mt-2 text-stonegreen">Begleitung von Veränderungsprozessen mit Fokus auf Akzeptanz, Kommunikation und nachhaltige Umsetzung.</p></article>
-          <article class="rounded-2xl border border-olive/15 bg-offwhite p-5"><h3 class="font-display text-2xl text-olive">Projektnahe Umsetzung</h3><p class="mt-2 text-stonegreen">Lösungen mit technischem Verständnis, operativem Praxisbezug und klarem Blick auf reale Projektbedingungen.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="lean-projects" class="mx-auto mt-6 max-w-6xl px-4 sm:px-6">
-      <div class="rounded-3xl border border-olive/15 bg-white p-6 shadow-card sm:p-8">
-        <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-olive">Umgesetzte LEAN Projekte</p>
-        <h2 class="mt-2 font-display text-4xl leading-[0.95] sm:text-5xl">Methoden, die auf Baustellen Wirkung erzeugen</h2>
-        <img src="./methoden.png" alt="Methoden im LEAN Projektumfeld" class="mt-5 rounded-2xl border border-olive/15">
-        <div class="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          <article class="rounded-2xl border border-olive/15 bg-offwhite p-5"><h3 class="font-display text-2xl text-olive">Last Planner System</h3><ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-stonegreen"><li>LHS300 (Graz) – Industriebau</li><li>Muthgasse 105 (Wien) – Hochbau</li><li>Leopoldquartier (Wien) – Hochbau</li><li>RISE Siemens (St. Ruprecht) – Industriebau</li></ul></article>
-          <article class="rounded-2xl border border-olive/15 bg-offwhite p-5"><h3 class="font-display text-2xl text-olive">Shopfloor Management</h3><ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-stonegreen"><li>PORR Tiefbau Wien</li><li>Tunnelkette Pack</li><li>Pumpspeicherkraftwerk Forbach</li><li>Klimatunnel Linz</li></ul></article>
-          <article class="rounded-2xl border border-olive/15 bg-offwhite p-5"><h3 class="font-display text-2xl text-olive">KVP-Projekte</h3><ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-stonegreen"><li>North Yorkshire Polyhalite Project</li><li>Brenner Basistunnel H53</li><li>Sibiu-Pitesti Lot 4</li><li>LEAN Expertenforum Tunnelbau</li></ul></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="qualifications" class="mx-auto mt-6 max-w-6xl px-4 sm:px-6">
-      <div class="rounded-3xl border border-olive/15 bg-white p-6 shadow-card sm:p-8">
-        <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-olive">Ausbildung & Qualifikationen</p>
-        <h2 class="mt-2 font-display text-4xl leading-[0.95] sm:text-5xl">Technische Basis. LEAN Fokus. Veränderungskompetenz.</h2>
-        <div class="mt-5 grid gap-4 md:grid-cols-2">
-          <article class="rounded-2xl border border-olive/15 bg-offwhite p-5"><h3 class="font-display text-2xl text-olive">Akademische Ausbildung</h3><ul class="mt-2 list-disc space-y-1 pl-5 text-stonegreen"><li>CAS in Change Management & Innovation</li><li>MBA in Projekt- & Prozessmanagement</li><li>MSc Geotechnical and Hydraulic Engineering</li></ul></article>
-          <article class="rounded-2xl border border-olive/15 bg-offwhite p-5"><h3 class="font-display text-2xl text-olive">LEAN & Prozessoptimierung</h3><ul class="mt-2 list-disc space-y-1 pl-5 text-stonegreen"><li>VDI 2553 Expertenausbildung</li><li>LEAN Six Sigma Black Belt</li><li>LEAN Six Sigma Green Belt</li></ul></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience" class="mx-auto mt-6 max-w-6xl px-4 sm:px-6">
-      <div class="rounded-3xl border border-olive/15 bg-white p-6 shadow-card sm:p-8">
-        <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-olive">Berufserfahrung</p>
-        <h2 class="mt-2 font-display text-4xl leading-[0.95] sm:text-5xl">Praxis aus Bau, Infrastruktur und LEAN Construction</h2>
-        <div class="mt-5 grid gap-4 md:grid-cols-2">
-          <article class="rounded-2xl border border-olive/15 bg-offwhite p-5"><h3 class="font-display text-2xl text-olive">PORR Group</h3><ul class="mt-2 list-disc pl-5 text-stonegreen"><li>LEAN Business Partner</li><li>Senior LEAN Construction Manager</li><li>LEAN Construction Manager</li></ul></article>
-          <article class="rounded-2xl border border-olive/15 bg-offwhite p-5"><h3 class="font-display text-2xl text-olive">STRABAG AG</h3><ul class="mt-2 list-disc pl-5 text-stonegreen"><li>LEAN Construction Experte</li><li>Contract Manager (Tunnelbau)</li><li>Tunnel Schichtbauleiter</li></ul></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="mx-auto mt-6 max-w-6xl px-4 sm:px-6">
-      <div class="rounded-3xl border border-olive/15 bg-white p-6 shadow-card sm:p-8">
-        <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-olive">Kontakt</p>
-        <h2 class="mt-2 font-display text-4xl leading-[0.95] sm:text-5xl">Lass uns ins Gespräch kommen</h2>
-        <div class="mt-5 grid gap-4 lg:grid-cols-2">
-          <div class="rounded-2xl border border-olive/15 bg-offwhite p-5 text-stonegreen">
-            <p><strong class="text-darkforest">Name:</strong> Julian Wenger</p>
-            <p class="mt-2"><strong class="text-darkforest">Marke:</strong> just LEAN it</p>
-            <p class="mt-2"><strong class="text-darkforest">E-Mail:</strong> <a href="mailto:julianwenger1991@gmail.com" class="text-olive underline">julianwenger1991@gmail.com</a></p>
-            <p class="mt-2"><strong class="text-darkforest">Telefon:</strong> <a href="tel:+436766603317" class="text-olive underline">+43 676 6603317</a></p>
-            <p class="mt-2"><strong class="text-darkforest">LinkedIn:</strong> <a href="https://www.linkedin.com/in/julian-wenger/" target="_blank" rel="noopener noreferrer" class="text-olive underline">linkedin.com/in/julian-wenger</a></p>
-          </div>
-          <div class="rounded-2xl border border-olive/15 bg-offwhite p-5">
-            <img src="./kontakt.png" alt="Kontaktaufnahme im LEAN-Umfeld" class="rounded-2xl border border-olive/15">
-            <p class="mt-4 text-stonegreen">Für Austausch, erste Gespräche oder zukünftige Zusammenarbeit im Bereich LEAN Construction für Infrastrukturprojekte.</p>
-            <a href="mailto:julianwenger1991@gmail.com" class="mt-4 inline-flex min-h-11 items-center justify-center rounded-full bg-copper px-6 font-bold text-white">E-Mail senden</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="pb-10 pt-8 text-sm text-stonegreen">
-    <div class="mx-auto flex max-w-6xl flex-col gap-3 border-t border-olive/15 px-4 pt-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-      <p>© 2026 just LEAN it · Julian Wenger</p>
-      <p>
-        LEAN Construction für Infrastrukturprojekte ·
-        <a href="./datenschutz.html" class="underline">Datenschutz</a> ·
-        <a href="./impressum.html" class="underline">Impressum</a>
-      </p>
-    </div>
-  </footer>
+    </footer>
+  </div>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons({
+      attrs: {
+        "stroke-width": 1.8
+      }
+    });
+  </script>
 </body>
 </html>
