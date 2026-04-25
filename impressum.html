@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impressum | just LEAN it</title>
+  <link rel="icon" type="image/png" href="./logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=League+Spartan:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --olive: #4A5D3B;
+      --gray: #6B6F6A;
+      --dark: #2F332E;
+      --light-olive: #E9EDE3;
+      --offwhite: #F7F8F5;
+      --copper: #B05A2B;
+      --text: #2F332E;
+      --line: rgba(74, 93, 59, 0.16);
+      --shadow: 0 24px 70px rgba(47, 51, 46, 0.18);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "DM Sans", Arial, sans-serif;
+      background:
+        linear-gradient(90deg, rgba(247,248,245,0.88), rgba(247,248,245,0.74)),
+        url("./background.png") center center / cover fixed no-repeat;
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    .container { width: min(var(--max), calc(100% - 32px)); margin: auto; }
+
+    h1, h2, h3 {
+      font-family: "League Spartan", Arial, sans-serif;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(247, 248, 245, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { height: 58px; width: auto; }
+
+    .brand-text strong {
+      display: block;
+      color: var(--olive);
+      font-weight: 800;
+    }
+
+    .brand-text span { color: var(--gray); font-size: 0.84rem; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a { color: var(--gray); font-weight: 700; font-size: 0.94rem; }
+    .nav a:hover,
+    .nav a[aria-current="page"] { color: var(--olive); }
+
+    main { padding: 54px 0 60px; }
+
+    .section-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 18px 50px rgba(47, 51, 46, 0.08);
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-card::before {
+      content: "";
+      position: absolute;
+      right: -110px;
+      top: -110px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(
+        circle at 100% 0%,
+        transparent 0 112px,
+        rgba(186, 193, 178, 0.42) 112px 115px,
+        transparent 115px 152px,
+        rgba(186, 193, 178, 0.34) 152px 155px,
+        transparent 155px 192px,
+        rgba(186, 193, 178, 0.28) 192px 195px,
+        transparent 195px
+      );
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .section-card > * { position: relative; z-index: 1; }
+
+    .section-label {
+      color: var(--olive);
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3vw, 3rem);
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    .section-intro {
+      color: var(--gray);
+      max-width: 68ch;
+      margin-bottom: 24px;
+    }
+
+    .impressum-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .item-card {
+      background: var(--offwhite);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .item-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: var(--olive);
+    }
+
+    .item-card p,
+    .item-card li { color: var(--gray); }
+
+    .item-card ul { padding-left: 18px; }
+
+    .legal-note {
+      background: var(--light-olive);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    .contact-link { color: var(--copper); font-weight: 700; }
+
+    footer {
+      padding: 34px 0 50px;
+      color: var(--gray);
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .footer-links a:hover { color: var(--olive); }
+
+    @media (max-width: 820px) {
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 0;
+      }
+
+      .impressum-grid { grid-template-columns: 1fr; }
+      .section-card { padding: 22px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a href="./index.html#home" class="brand">
+          <img src="./logo.png" alt="just LEAN it Logo">
+          <div class="brand-text">
+            <strong>just LEAN it</strong>
+            <span>LEAN Construction für Infrastrukturprojekte</span>
+          </div>
+        </a>
+
+        <nav class="nav">
+          <a href="./index.html#about">Über mich</a>
+          <a href="./index.html#services">Leistungen</a>
+          <a href="./index.html#lean-projects">LEAN Projekte</a>
+          <a href="./index.html#qualifications">Qualifikationen</a>
+          <a href="./index.html#experience">Erfahrung</a>
+          <a href="./index.html#contact">Kontakt</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="container section-card">
+          <span class="section-label">Impressum</span>
+          <h1 class="section-title">Angaben gemäß § 5 ECG, § 24 Mediengesetz</h1>
+          <p class="section-intro">
+            Diese Seite enthält die rechtlich erforderlichen Informationen für Anbieterkennzeichnung
+            und Offenlegung nach österreichischem Recht.
+          </p>
+
+          <div class="impressum-grid">
+            <article class="item-card">
+              <h3>Medieninhaber & Diensteanbieter</h3>
+              <ul>
+                <li><strong>Name:</strong> Julian Wenger</li>
+                <li><strong>Adresse:</strong> Wehlistraße 291/1/33 - 1020 Wien</li>
+                <li><strong>E-Mail:</strong> <a class="contact-link" href="mailto:julianwenger1991@gmail.com">julianwenger1991@gmail.com</a></li>
+                <li><strong>Telefon:</strong> <a class="contact-link" href="tel:+436766603317">+43 676 6603317</a></li>
+              </ul>
+            </article>
+
+            <article class="item-card">
+              <h3>Verantwortlichkeit</h3>
+              <p><strong>Medieninhaber und verantwortlich für den Inhalt:</strong> Julian Wenger</p>
+              <p style="margin-top: 12px;"><strong>Unternehmensgegenstand:</strong><br>Beratung im Bereich LEAN Construction im Bau- und Infrastrukturbereich</p>
+            </article>
+          </div>
+
+          <div class="legal-note">
+            <p>
+              Hinweis: Dieses Impressum dient als Basis für die gesetzlich erforderlichen Angaben in Österreich.
+              Bitte bei Bedarf (z. B. Gewerbe-/UID-Nummer, Aufsichtsbehörde oder Kammerzugehörigkeit)
+              um weitere Pflichtangaben ergänzen.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div>© 2026 just LEAN it · Julian Wenger</div>
+        <div class="footer-links">
+          <a href="./index.html">Startseite</a>
+          <a href="./impressum.html" aria-current="page">Impressum</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
