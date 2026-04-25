@@ -448,33 +448,47 @@
 
     .values {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 14px;
-      margin-top: 22px;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
     }
 
     .value-card {
-      background: linear-gradient(180deg, color-mix(in srgb, var(--copper) 14%, white) 0%, var(--offwhite) 54%);
-      border: 1px solid color-mix(in srgb, var(--copper) 35%, transparent);
-      border-radius: 18px;
-      padding: 16px 14px;
-      text-align: center;
-      color: var(--copper);
-      font-weight: 800;
-      font-size: 0.92rem;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid color-mix(in srgb, var(--olive) 16%, transparent);
+      border-radius: 16px;
+      padding: 14px 16px;
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      box-shadow: 0 8px 18px rgba(47, 51, 46, 0.05);
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
+      gap: 10px;
+      backdrop-filter: blur(2px);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--olive) 34%, transparent);
+      box-shadow: 0 12px 22px rgba(47, 51, 46, 0.10);
+    }
+
+    .value-card span {
+      line-height: 1.25;
     }
 
     .value-icon {
-      width: 34px;
-      height: 34px;
+      width: 30px;
+      height: 30px;
       color: var(--olive);
       flex: 0 0 auto;
+      padding: 6px;
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--olive) 11%, white);
     }
 
     .contact-grid {
