@@ -112,6 +112,43 @@
       border-radius: 999px;
     }
 
+    .mobile-nav-controls {
+      display: none;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mobile-contact-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--olive);
+      font-weight: 800;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--olive);
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1;
+      cursor: pointer;
+    }
+
     .hero {
       position: relative;
       padding: 36px 0 30px;
@@ -605,35 +642,57 @@
       }
 
       .topbar-inner {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
         padding: 12px 0;
         gap: 10px;
       }
 
       .brand {
-        justify-content: center;
+        justify-content: flex-start;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .brand img {
+        height: 50px;
+      }
+
+      .brand-text span {
+        font-size: 0.76rem;
+      }
+
+      .mobile-nav-controls,
+      .mobile-contact-btn,
+      .nav-toggle {
+        display: inline-flex;
       }
 
       .nav {
+        display: none;
+        width: 100%;
         gap: 8px;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scrollbar-width: thin;
-        padding-bottom: 4px;
+        flex-direction: column;
+        align-items: stretch;
+        padding-top: 6px;
+      }
+
+      .topbar-inner.nav-open .nav {
+        display: flex;
       }
 
       .nav a {
-        white-space: nowrap;
+        white-space: normal;
         font-size: 0.9rem;
-        padding: 8px 10px;
-        border-radius: 999px;
+        padding: 10px 12px;
+        border-radius: 12px;
         background: rgba(255, 255, 255, 0.65);
         border: 1px solid color-mix(in srgb, var(--olive) 10%, transparent);
       }
 
       .nav .cta-link {
-        padding: 8px 14px;
+        padding: 10px 12px;
       }
 
       .hero-left,
@@ -680,7 +739,12 @@
           </div>
         </a>
 
-        <nav class="nav">
+        <div class="mobile-nav-controls">
+          <a href="#contact" class="mobile-contact-btn">Kontakt</a>
+          <button type="button" class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">☰</button>
+        </div>
+
+        <nav class="nav" id="main-nav">
           <a href="#about">Über mich</a>
           <a href="#services">Leistungen</a>
           <a href="#lean-projects">LEAN Projekte</a>
@@ -1123,6 +1187,28 @@
         "stroke-width": 1.8
       }
     });
+
+    const topbarInner = document.querySelector(".topbar-inner");
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelectorAll(".nav a");
+
+    if (topbarInner && navToggle) {
+      navToggle.addEventListener("click", () => {
+        const isOpen = topbarInner.classList.toggle("nav-open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+        navToggle.setAttribute("aria-label", isOpen ? "Menü schließen" : "Menü öffnen");
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 820) {
+            topbarInner.classList.remove("nav-open");
+            navToggle.setAttribute("aria-expanded", "false");
+            navToggle.setAttribute("aria-label", "Menü öffnen");
+          }
+        });
+      });
+    }
   </script>
 </body>
 </html>
