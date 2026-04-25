@@ -114,7 +114,7 @@
 
     .hero {
       position: relative;
-      padding: 54px 0 44px;
+      padding: 42px 0 34px;
       overflow: visible;
       background: transparent;
     }
@@ -148,16 +148,20 @@
     }
 
     .hero-left {
-      padding: 38px;
+      padding: 30px 34px 32px;
       overflow: visible;
       position: relative;
     }
 
     .hero-logo {
-      width: 680px;
-      max-width: 100%;
-      margin: 0 auto 34px;
-      filter: drop-shadow(0 10px 22px rgba(74, 93, 59, 0.16));
+      width: 100%;
+      max-width: none;
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto 22px;
+      transform: scale(1.07);
+      transform-origin: center;
+      filter: drop-shadow(0 10px 22px rgba(74, 93, 59, 0.14)) drop-shadow(0 0 12px rgba(176, 90, 43, 0.08));
     }
 
     .hero-kicker {
@@ -166,13 +170,13 @@
       letter-spacing: 0.11em;
       font-size: 0.82rem;
       font-weight: 800;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
     .hero h1 {
       font-size: clamp(2.3rem, 3.8vw, 4.2rem);
       max-width: 100%;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
       color: var(--dark);
       overflow: visible;
       word-break: normal;
@@ -243,10 +247,10 @@
     }
 
     .hero-right {
-      padding: 18px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 12px;
     }
 
     .portrait-card {
@@ -254,7 +258,7 @@
       overflow: hidden;
       background: var(--light-olive);
       border: 1px solid var(--line);
-      min-height: 520px;
+      min-height: 480px;
     }
 
     .portrait-card img {
@@ -268,7 +272,7 @@
       background: var(--light-olive);
       color: var(--dark);
       border-radius: 24px;
-      padding: 26px 22px;
+      padding: 22px 20px 18px;
       text-align: center;
       border: 1px solid var(--line);
     }
@@ -545,7 +549,7 @@
         grid-template-columns: 1fr;
       }
 
-      .portrait-card { min-height: 460px; }
+      .portrait-card { min-height: 430px; }
       .values { grid-template-columns: repeat(2, 1fr); }
       .grid-3 { grid-template-columns: repeat(2, 1fr); }
     }
@@ -571,8 +575,8 @@
       }
 
       .hero-logo {
-        width: 360px;
-        max-width: 100%;
+        width: 100%;
+        max-width: none;
       }
 
       .hero-actions { flex-direction: column; }
