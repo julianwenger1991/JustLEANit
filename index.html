@@ -19,8 +19,8 @@
       --copper: #B05A2B;
       --text: #2F332E;
       --muted: #6B6F6A;
-      --line: rgba(74, 93, 59, 0.16);
-      --shadow: 0 24px 70px rgba(47, 51, 46, 0.18);
+      --line: rgba(74, 93, 59, 0.12);
+      --shadow: 0 14px 34px rgba(47, 51, 46, 0.10);
       --radius-xl: 30px;
       --radius-lg: 22px;
       --max: 1180px;
@@ -114,7 +114,7 @@
 
     .hero {
       position: relative;
-      padding: 42px 0 34px;
+      padding: 36px 0 30px;
       overflow: visible;
       background: transparent;
     }
@@ -124,8 +124,8 @@
       position: absolute;
       inset: 0;
       background-image: radial-gradient(var(--olive) 1px, transparent 1px);
-      background-size: 22px 22px;
-      opacity: 0.08;
+      background-size: 26px 26px;
+      opacity: 0.04;
       pointer-events: none;
     }
 
@@ -144,11 +144,11 @@
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
       background: rgba(247, 248, 245, 0.84);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(10px);
     }
 
     .hero-left {
-      padding: 22px 38px 28px;
+      padding: 24px 34px 28px;
       overflow: visible;
       position: relative;
     }
@@ -161,7 +161,7 @@
       margin: 0 auto 6px;
       transform: scale(1.0);
       transform-origin: center;
-      filter: drop-shadow(0 10px 22px rgba(74, 93, 59, 0.14)) drop-shadow(0 0 12px rgba(176, 90, 43, 0.08));
+      filter: drop-shadow(0 7px 14px rgba(74, 93, 59, 0.10));
     }
 
     .hero-kicker {
@@ -248,7 +248,7 @@
     }
 
     .hero-right {
-      padding: 16px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -301,13 +301,13 @@
       font-weight: 800;
     }
 
-    section { padding: 28px 0; }
+    section { padding: 24px 0; }
 
     .section-card {
       background: white;
       border: 1px solid var(--line);
       border-radius: var(--radius-xl);
-      box-shadow: 0 18px 50px rgba(47, 51, 46, 0.08);
+      box-shadow: 0 10px 24px rgba(47, 51, 46, 0.06);
       padding: 34px;
       position: relative;
       overflow: hidden;
@@ -316,18 +316,18 @@
     .section-card::before {
       content: "";
       position: absolute;
-      right: -110px;
-      top: -110px;
-      width: 300px;
-      height: 300px;
+      right: -140px;
+      top: -140px;
+      width: 270px;
+      height: 270px;
       background: radial-gradient(
         circle at 100% 0%,
         transparent 0 112px,
-        rgba(186, 193, 178, 0.42) 112px 115px,
+        rgba(186, 193, 178, 0.28) 112px 115px,
         transparent 115px 152px,
-        rgba(186, 193, 178, 0.34) 152px 155px,
+        rgba(186, 193, 178, 0.2) 152px 155px,
         transparent 155px 192px,
-        rgba(186, 193, 178, 0.28) 192px 195px,
+        rgba(186, 193, 178, 0.15) 192px 195px,
         transparent 195px
       );
       z-index: 0;
@@ -365,7 +365,7 @@
       background: var(--light-olive);
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
-      padding: 24px;
+      padding: 22px;
     }
 
     .soft-box p + p { margin-top: 12px; }
@@ -387,14 +387,14 @@
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       padding: 24px;
-      transition: 0.22s ease;
+      transition: 0.2s ease;
       position: relative;
       overflow: hidden;
     }
 
     .item-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 36px rgba(47,51,46,0.10);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(47,51,46,0.07);
     }
 
     .item-card h3 {
@@ -419,7 +419,7 @@
       border-radius: var(--radius-lg);
       border: 1px solid var(--line);
       overflow: hidden;
-      box-shadow: 0 10px 28px rgba(47, 51, 46, 0.10);
+      box-shadow: 0 6px 16px rgba(47, 51, 46, 0.08);
       background: white;
     }
 
@@ -480,7 +480,7 @@
     .contact-grid {
       display: grid;
       grid-template-columns: 0.95fr 1.05fr;
-      gap: 18px;
+      gap: 16px;
     }
 
     .contact-list {
@@ -489,32 +489,34 @@
     }
 
     .contact-line {
-      padding: 14px 16px;
+      padding: 12px 14px;
       border-radius: 16px;
-      background: var(--offwhite);
-      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid color-mix(in srgb, var(--olive) 12%, transparent);
     }
 
     .contact-line strong {
       display: block;
       color: var(--dark);
-      margin-bottom: 2px;
+      margin-bottom: 4px;
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
     }
 
     .contact-card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 248, 245, 0.96));
-      border: 1px solid color-mix(in srgb, var(--olive) 16%, transparent);
+      background: linear-gradient(155deg, rgba(255, 255, 255, 0.95), rgba(247, 248, 245, 0.9));
+      border: 1px solid color-mix(in srgb, var(--olive) 14%, transparent);
     }
 
     .contact-graphic {
       position: relative;
       overflow: hidden;
-      min-height: 240px;
+      min-height: 220px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       background: linear-gradient(120deg, rgba(255, 255, 255, 0.98), rgba(247, 248, 245, 0.96));
-      border: 1px solid color-mix(in srgb, var(--olive) 18%, transparent);
+      border: 1px solid color-mix(in srgb, var(--olive) 14%, transparent);
     }
 
     .contact-graphic::before {
@@ -522,8 +524,18 @@
       position: absolute;
       inset: 0;
       background: url("./signature.png") right -48px bottom -84px / 510px auto no-repeat;
-      opacity: 0.2;
+      opacity: 0.12;
       pointer-events: none;
+    }
+
+    .contact-graphic .services-image-card {
+      margin-bottom: 14px;
+      box-shadow: none;
+      border-color: color-mix(in srgb, var(--olive) 12%, transparent);
+    }
+
+    .contact-graphic p {
+      max-width: 48ch;
     }
 
     .contact-graphic p,
@@ -566,11 +578,35 @@
 
       .topbar-inner {
         flex-direction: column;
-        align-items: flex-start;
-        padding: 14px 0;
+        align-items: stretch;
+        padding: 12px 0;
+        gap: 10px;
       }
 
-      .nav { gap: 12px; }
+      .brand {
+        justify-content: center;
+      }
+
+      .nav {
+        gap: 8px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        padding-bottom: 4px;
+      }
+
+      .nav a {
+        white-space: nowrap;
+        font-size: 0.9rem;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.65);
+        border: 1px solid color-mix(in srgb, var(--olive) 10%, transparent);
+      }
+
+      .nav .cta-link {
+        padding: 8px 14px;
+      }
 
       .hero-left,
       .hero-right,
@@ -588,6 +624,18 @@
       .btn { width: 100%; }
 
       .values { grid-template-columns: 1fr; }
+
+      .contact-grid {
+        gap: 14px;
+      }
+
+      .contact-list {
+        gap: 10px;
+      }
+
+      .contact-line {
+        padding: 12px;
+      }
     }
   </style>
 </head>
