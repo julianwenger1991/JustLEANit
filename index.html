@@ -148,18 +148,18 @@
     }
 
     .hero-left {
-      padding: 30px 34px 32px;
+      padding: 18px 38px 34px;
       overflow: visible;
       position: relative;
     }
 
     .hero-logo {
-      width: 100%;
-      max-width: none;
+      width: 620px;
+      max-width: 100%;
       height: auto;
       object-fit: contain;
-      margin: 0 auto 22px;
-      transform: scale(1.07);
+      margin: -20px auto 14px;
+      transform: scale(1.08);
       transform-origin: center;
       filter: drop-shadow(0 10px 22px rgba(74, 93, 59, 0.14)) drop-shadow(0 0 12px rgba(176, 90, 43, 0.08));
     }
@@ -170,13 +170,13 @@
       letter-spacing: 0.11em;
       font-size: 0.82rem;
       font-weight: 800;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .hero h1 {
       font-size: clamp(2.3rem, 3.8vw, 4.2rem);
       max-width: 100%;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
       color: var(--dark);
       overflow: visible;
       word-break: normal;
@@ -250,7 +250,8 @@
       padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      justify-content: flex-start;
+      gap: 14px;
     }
 
     .portrait-card {
@@ -258,7 +259,7 @@
       overflow: hidden;
       background: var(--light-olive);
       border: 1px solid var(--line);
-      min-height: 480px;
+      min-height: 420px;
     }
 
     .portrait-card img {
@@ -275,6 +276,7 @@
       padding: 22px 20px 18px;
       text-align: center;
       border: 1px solid var(--line);
+      margin-bottom: 0;
     }
 
     .quote-card p {
@@ -549,7 +551,7 @@
         grid-template-columns: 1fr;
       }
 
-      .portrait-card { min-height: 430px; }
+      .portrait-card { min-height: 420px; }
       .values { grid-template-columns: repeat(2, 1fr); }
       .grid-3 { grid-template-columns: repeat(2, 1fr); }
     }
@@ -575,8 +577,8 @@
       }
 
       .hero-logo {
-        width: 100%;
-        max-width: none;
+        width: 620px;
+        max-width: 100%;
       }
 
       .hero-actions { flex-direction: column; }
