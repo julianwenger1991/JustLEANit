@@ -485,14 +485,22 @@
 
     .contact-list {
       display: grid;
-      gap: 12px;
+      gap: 0;
+      background: transparent;
     }
 
     .contact-line {
-      padding: 12px 14px;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.76);
-      border: 1px solid color-mix(in srgb, var(--olive) 12%, transparent);
+      padding: 14px 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--olive) 14%, transparent);
+    }
+
+    .contact-line:first-child {
+      padding-top: 0;
+    }
+
+    .contact-line:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
     }
 
     .contact-line strong {
@@ -504,8 +512,10 @@
     }
 
     .contact-card {
-      background: linear-gradient(155deg, rgba(255, 255, 255, 0.95), rgba(247, 248, 245, 0.9));
-      border: 1px solid color-mix(in srgb, var(--olive) 14%, transparent);
+      padding: 8px 2px;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
     }
 
     .contact-graphic {
@@ -634,7 +644,7 @@
       }
 
       .contact-line {
-        padding: 12px;
+        padding: 12px 0;
       }
     }
   </style>
@@ -1055,7 +1065,7 @@
           <h2 class="section-title">Lass uns ins Gespräch kommen</h2>
 
           <div class="contact-grid">
-            <div class="soft-box contact-card">
+            <div class="contact-card">
               <div class="contact-list">
                 <div class="contact-line">
                   <strong>Name</strong>
